@@ -1,0 +1,44 @@
+{
+  "apps": {
+    "nvim": {
+      "paths": [
+        {
+          "internal": "dotfiles_data/nvim",
+          "external": "~/.config/nvim"
+        }
+      ]
+    },
+    "fish": {
+      "paths": [
+        {
+          "internal": "dotfiles_data/fish",
+          "external": "~/.config/fish"
+        }
+      ]
+    },
+    "tmux": {
+      "paths": [
+        {
+          "internal": "dotfiles_data/tmux",
+          "external": "~/.config/tmux"
+        }
+      ]
+    },
+    "zsh": {
+      "paths": [
+        {
+          "internal": "dotfiles_data/zsh",
+          "external": "~/.config/zsh"
+        }
+      ]
+    },
+    "gh": {
+      "paths": [
+        {
+          "internal": "dotfiles_data/gh",
+          "external": "~/.config/gh"
+        }
+      ]
+    }
+  }
+}
