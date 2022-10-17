@@ -19,6 +19,7 @@ end
 function bws -d "Bitwarden password search using FZF"
   if command -sq bw and command -sq fzf and command -sq xclip
         bwl
+        bw sync
         bw get item (
             bw list items \
             | jq -r '.[] | [.name, .login.username // "", .id] | @tsv' \
@@ -28,4 +29,14 @@ function bws -d "Bitwarden password search using FZF"
             | awk '{print $NF}'
         ) | jq -r '.login.password' | pbcopy
     end
+end
+
+function bw-pass -d "Generate new password from Bitwarden"
+  bwl
+  bw generate -lusn --length 18
+end
+
+function bw-passp -d "Generate a new password from Bitwarden (Passphrase)"
+  bwl
+  bw generate --passphrase --words 3 --separator - --includeNumber --capitalize
 end

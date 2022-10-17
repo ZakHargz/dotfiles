@@ -40,6 +40,8 @@ packer.startup({
     use('akinsho/nvim-bufferline.lua')
     use('nvim-lualine/lualine.nvim')
     use({ 'junegunn/fzf.vim', requires = { 'junegunn/fzf' } })
+    use('windwp/nvim-autopairs')
+    use('windwp/nvim-ts-autotag')
 
   end,
   config = {
