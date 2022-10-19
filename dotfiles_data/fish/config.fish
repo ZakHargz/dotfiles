@@ -17,6 +17,8 @@ test -d /opt/homebrew/bin                   ; and set PATH /opt/homebrew/bin $PA
 test -d ~/.config/tools                     ; and set PATH ~/.config/tools $PATH
 
 # Aliases
+source $HOME/.config/fish/aliases/terraform.fish
+
 alias v "nvim"
 alias lg "lazygit"
 alias .. 'cd .. ; clear ; k'
