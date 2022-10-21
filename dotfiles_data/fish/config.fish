@@ -29,3 +29,13 @@ alias fr 'source ~/.config/fish/config.fish'
 alias ide 'tmux split-window -v -p 20 ; tmux split-window -h -p 50 ; tmux last-pane ; nvim'
 
 # Utils
+if command -s gpg-agent 2>&1 > /dev/null
+	gpg-connect-agent --quiet /bye 2> /dev/null
+	if test $status -eq 1
+		pkill -U $USER gpg-agent
+		gpg-agent --daemon 2>&1 > /dev/null
+	end
+
+	# Use curses based Pinentry
+	set -x GPG_TTY (tty)
+end

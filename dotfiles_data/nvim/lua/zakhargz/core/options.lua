@@ -1,7 +1,7 @@
 local opt = vim.opt
 
 -- General Options
-opt.relativenumber = true
+opt.relativenumber = false
 opt.number = true
 opt.tabstop = 2
 opt.shiftwidth = 2
@@ -21,6 +21,7 @@ vim.opt.shortmess:append("I")
 vim.opt.wildignore:append({ "*.DS_Store" })
 vim.opt.whichwrap:append({ ["<"] = true, [">"] = true, ["h"] = true, ["l"] = true, ["["] = true, ["]"] = true })
 vim.opt.iskeyword:append({ "@-@", "-", "$" })
+vim.opt.mouse = "a"
 
 vim.opt.fillchars = {
 	horiz = "━",

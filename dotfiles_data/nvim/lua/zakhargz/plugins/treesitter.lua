@@ -1,4 +1,4 @@
-local status, treesitter = pcall(require, "treesitter")
+local status, treesitter = pcall(require, "nvim-treesitter.configs")
 if not status then
 	return
 end
@@ -20,6 +20,8 @@ treesitter.setup({
 		"vim",
 		"dockerfile",
 		"gitignore",
+		"fish",
 	},
 	auto_install = true,
+	autopairs = { enable = true },
 })

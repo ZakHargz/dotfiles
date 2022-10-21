@@ -18,9 +18,11 @@ return require("packer").startup(function(use)
 
 	-- UI
 	use({ "bluz71/vim-nightfly-guicolors" })
+	use({ "NTBBloodbath/doom-one.nvim" })
 	use({ "kyazdani42/nvim-web-devicons" })
 	use({ "nvim-lualine/lualine.nvim" })
 	use({ "j-hui/fidget.nvim" })
+	use({ "akinsho/bufferline.nvim" })
 
 	-- Utils
 	use({ "numToStr/Comment.nvim" })
