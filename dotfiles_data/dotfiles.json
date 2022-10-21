@@ -39,6 +39,14 @@
           "external": "~/.config/gh"
         }
       ]
+    },
+    "kitty": {
+      "paths": [
+        {
+          "internal": "dotfiles_data/kitty",
+          "external": "~/.config/kitty"
+        }
+      ]
     }
   }
 }
