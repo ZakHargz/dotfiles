@@ -15,7 +15,7 @@ require("zakhargz.core.autocmd")
 -- Plugins
 require("zakhargz.plugins.nvim-cmp")
 require("zakhargz.plugins.comment")
-require("zakhargz.plugins.nvim-tree")
+require("zakhargz.plugins.neo-tree")
 require("zakhargz.plugins.lualine")
 require("zakhargz.plugins.telescope")
 require("zakhargz.plugins.autopairs")

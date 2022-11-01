@@ -99,6 +99,11 @@ lspconfig["jsonls"].setup({
 	on_attach = on_attach,
 })
 
+lspconfig["tailwindcss"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
 function OrganiseImports(timeoutms)
 	local clients = vim.lsp.buf_get_clients()
 	for _, client in pairs(clients) do

@@ -22,6 +22,8 @@ vim.opt.wildignore:append({ "*.DS_Store" })
 vim.opt.whichwrap:append({ ["<"] = true, [">"] = true, ["h"] = true, ["l"] = true, ["["] = true, ["]"] = true })
 vim.opt.iskeyword:append({ "@-@", "-", "$" })
 vim.opt.mouse = "a"
+vim.opt.undofile = true
+vim.opt.undodir = undodir
 
 vim.opt.fillchars = {
 	horiz = "━",
@@ -63,3 +65,9 @@ vim.cmd("set wildignore+=*/vendor/**")
 vim.cmd("set wildignore+=*/node_modules/**")
 
 vim.api.nvim_create_user_command("RemoveDocBlock", [[%s,/\*\_.\{-}\*/,,g]], {})
+
+-- Create Undo directory if it doesn't exist.
+local undodir = "/tmp/.vim-undodir-" .. vim.env.USER
+if vim.fn.isdirectory(undodir) ~= 1 then
+	vim.fn.mkdir(undodir, "p", "0700")
+end

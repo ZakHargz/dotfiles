@@ -2,6 +2,7 @@ vim.g.mapleader = " "
 
 local keymap = vim.keymap
 local opt = { noremap = true, silent = true, buffer = bufnr }
+local builtin = require("telescope.builtin")
 
 -- General Keymaps
 keymap.set("i", "jk", "<ESC>")
@@ -23,8 +24,17 @@ keymap.set("n", "<leader>tp", ":tabp<CR>") -- Go to previous tab
 keymap.set("", "<A-Down>", ":m .+1<CR>==", opt) -- Move line up
 keymap.set("", "<A-Up>", ":m .-2<CR>==", opt) -- Move line down
 
+keymap.set("n", "<C-s>", "<cmd> w <CR>")
+
+-- Fast save, save quit, force exit
+keymap.set("n", "<Leader>w", ":w!<CR>", { desc = "Write!" })
+keymap.set("n", "<Leader>x", ":x<CR>", { desc = "Write and exit" })
+keymap.set("n", "<Leader>qq", ":q<CR>", { desc = "Quit" })
+keymap.set("n", "<Leader>qa", ":qa!<CR>", { desc = "Quit all!" })
+keymap.set("n", "<Leader>wq", ":wq!<CR>", { desc = "Write and quit!" })
+
 -- Nvim-Tree
-keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
+keymap.set("n", "<leader>e", "<cmd>Neotree toggle<CR>")
 
 -- Telescope
 keymap.set("n", ";f", "<cmd>Telescope find_files<cr>")
@@ -32,6 +42,12 @@ keymap.set("n", ";fs", "<cmd>Telescope live_grep<cr>")
 keymap.set("n", ";fc", "<cmd>Telescope grep_string<cr>")
 keymap.set("n", ";b", "<cmd>Telescope buffers<cr>")
 keymap.set("n", ";fh", "<cmd>Telescope help_tags<cr>")
+keymap.set("n", "<leader>ff", function()
+	builtin.find_files()
+end)
+keymap.set("n", "gr", function()
+	builtin.lsp_references()
+end)
 
 -- LSP
 keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<CR>", opt)

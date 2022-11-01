@@ -26,12 +26,19 @@ return require("packer").startup(function(use)
 
 	-- Utils
 	use({ "numToStr/Comment.nvim" })
-	use({ "nvim-tree/nvim-tree.lua" })
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+	use({ "nvim-telescope/telescope-ui-select.nvim" })
 	use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" })
 	use({ "windwp/nvim-autopairs" })
 	use({ "windwp/nvim-ts-autotag" })
 	use({ "lewis6991/gitsigns.nvim" })
+	use({
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v2.x",
+		cmd = "Neotree",
+		module = "neo-tree",
+		requires = { { "MunifTanjim/nui.nvim", module = "nui" } },
+	})
 
 	-- Autocompletion
 	use({ "hrsh7th/nvim-cmp" })

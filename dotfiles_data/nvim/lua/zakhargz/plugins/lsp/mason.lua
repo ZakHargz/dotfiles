@@ -13,7 +13,15 @@ if not mason_null_ls_status then
 	return
 end
 
-mason.setup()
+mason.setup({
+	ui = {
+		icons = {
+			package_installed = "✓",
+			package_uninstalled = "✗",
+			package_pending = "⟳",
+		},
+	},
+})
 
 mason_lspconfig.setup({
 	ensure_installed = {
@@ -23,7 +31,6 @@ mason_lspconfig.setup({
 		"bashls",
 		"cssls",
 		"dockerls",
-		"groovyls",
 		"html",
 		"jsonls",
 		"pyright",
@@ -43,5 +50,6 @@ mason_null_ls.setup({
 		"fixjson",
 		"shellcheck",
 		"yamlfmt",
+		"gofumpt",
 	},
 })
