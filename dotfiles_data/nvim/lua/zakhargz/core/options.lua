@@ -23,7 +23,6 @@ vim.opt.whichwrap:append({ ["<"] = true, [">"] = true, ["h"] = true, ["l"] = tru
 vim.opt.iskeyword:append({ "@-@", "-", "$" })
 vim.opt.mouse = "a"
 vim.opt.undofile = true
-vim.opt.undodir = undodir
 
 vim.opt.fillchars = {
 	horiz = "━",

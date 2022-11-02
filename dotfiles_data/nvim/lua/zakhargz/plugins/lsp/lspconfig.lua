@@ -3,56 +3,39 @@ if not lspconfig_status then
 	return
 end
 
-local cmp_nvim_lsp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not cmp_nvim_lsp_status then
-	return
-end
-
 local typescript_setup, typescript = pcall(require, "typescript")
 if not typescript_setup then
 	return
 end
 
-local on_attach = function(client)
-	if not init_done then
-		init_done = true
-		require("fidget").setup({
-			text = {
-				spinner = "arc",
-			},
-		})
-	end
-
-	if client.name == "tsserver" then
-		vim.keymap.set("n", "<leader>rf", ":TypescriptRenameFile<CR>")
-	end
-
-	if client.name ~= "null-ls" and client.name ~= "sumneko_lua" then
-		vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-			pattern = "<buffer>",
-			callback = function()
-				if vim.lsp.buf.server_ready() then
-					OrganiseImports(150)
-				end
-			end,
-			group = vim.api.nvim_create_augroup("LSPOrganizeImports", { clear = true }),
-		})
-	end
+local on_attach_status, on_attach = pcall(require, "zakhargz.plugins.lsp.on_attach")
+if not on_attach_status then
+	vim.notify("require('plugins.lsp.on_attach') failed")
 end
 
 -- Enable autocomplete
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+vim.diagnostic.config({
+	severity_sort = true,
+	virtual_text = true,
+	underline = true,
+	signs = { priority = 10 },
+	float = {
+		source = "if_many",
+	},
+})
+
 typescript.setup({
 	server = {
 		capabilities = capabilities,
-		on_attach = on_attach,
+		on_attach = on_attach.on_attach,
 	},
 })
 
 lspconfig["sumneko_lua"].setup({
 	capabilities = capabilities,
-	on_attach = on_attach,
+	on_attach = on_attach.on_attach,
 	settings = {
 		Lua = {
 			diagnostics = {
@@ -66,21 +49,21 @@ lspconfig["sumneko_lua"].setup({
 })
 
 lspconfig["gopls"].setup({
-	on_attach = on_attach,
+	on_attach = on_attach.on_attach,
 	capabilities = capabilities,
 	filetypes = { "go", "gomod", "gowork", "gotmpl" },
 	cmd = { "gopls" },
 })
 
 lspconfig["dockerls"].setup({
-	on_attach = on_attach,
+	on_attach = on_attach.on_attach,
 	capabilities = capabilities,
 	filetypes = { "dockerfile" },
 	cmd = { "docker-langserver", "--stdio" },
 })
 
 lspconfig["bashls"].setup({
-	on_attach = on_attach,
+	on_attach = on_attach.on_attach,
 	capabilities = capabilities,
 	filetypes = { "sh" },
 	cmd = { "bash-language-server", "start" },
@@ -88,7 +71,7 @@ lspconfig["bashls"].setup({
 })
 
 lspconfig["terraformls"].setup({
-	on_attach = on_attach,
+	on_attach = on_attach.on_attach,
 	capabilities = capabilities,
 	filetypes = { "terraform", "hcl", "tf" },
 	cmd = { "terraform-lsp" },
@@ -96,12 +79,12 @@ lspconfig["terraformls"].setup({
 
 lspconfig["jsonls"].setup({
 	capabilities = capabilities,
-	on_attach = on_attach,
+	on_attach = on_attach.on_attach,
 })
 
 lspconfig["tailwindcss"].setup({
 	capabilities = capabilities,
-	on_attach = on_attach,
+	on_attach = on_attach.on_attach,
 })
 
 function OrganiseImports(timeoutms)

@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
 
 local keymap = vim.keymap
-local opt = { noremap = true, silent = true, buffer = bufnr }
+local opt = { noremap = true, silent = true }
 local builtin = require("telescope.builtin")
 
 -- General Keymaps
@@ -33,8 +33,20 @@ keymap.set("n", "<Leader>qq", ":q<CR>", { desc = "Quit" })
 keymap.set("n", "<Leader>qa", ":qa!<CR>", { desc = "Quit all!" })
 keymap.set("n", "<Leader>wq", ":wq!<CR>", { desc = "Write and quit!" })
 
--- Nvim-Tree
+-- Neotree
 keymap.set("n", "<leader>e", "<cmd>Neotree toggle<CR>")
+
+-- Neoterm
+keymap.set("n", "<leader>q", "[[:Ttoggle<cr>]]", opt)
+keymap.set("t", "<leader>q", "[[<c-><c-n>:Ttoggle<cr>]]", opt)
+
+-- Trouble
+keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>", opt)
+keymap.set("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", opt)
+keymap.set("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", opt)
+keymap.set("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", opt)
+keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", opt)
+keymap.set("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", opt)
 
 -- Telescope
 keymap.set("n", ";f", "<cmd>Telescope find_files<cr>")

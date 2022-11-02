@@ -22,6 +22,8 @@ require("zakhargz.plugins.autopairs")
 require("zakhargz.plugins.treesitter")
 require("zakhargz.plugins.gitsigns")
 require("zakhargz.plugins.bufferline")
+require("zakhargz.plugins.neo-term")
+require("zakhargz.plugins.trouble")
 
 require("zakhargz.plugins.lsp.mason")
 require("zakhargz.plugins.lsp.lspsaga")

@@ -172,6 +172,11 @@ _G.packer_plugins = {
     path = "/Users/zak_hargreaves/.local/share/nvim/site/pack/packer/opt/neo-tree.nvim",
     url = "https://github.com/nvim-neo-tree/neo-tree.nvim"
   },
+  neoterm = {
+    loaded = true,
+    path = "/Users/zak_hargreaves/.local/share/nvim/site/pack/packer/start/neoterm",
+    url = "https://github.com/kassio/neoterm"
+  },
   ["nui.nvim"] = {
     loaded = false,
     needs_bufread = false,
@@ -238,6 +243,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/zak_hargreaves/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["trouble.nvim"] = {
+    loaded = true,
+    path = "/Users/zak_hargreaves/.local/share/nvim/site/pack/packer/start/trouble.nvim",
+    url = "https://github.com/folke/trouble.nvim"
   },
   ["typescript.nvim"] = {
     loaded = true,
