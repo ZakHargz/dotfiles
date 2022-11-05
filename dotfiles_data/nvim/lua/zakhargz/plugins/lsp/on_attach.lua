@@ -1,3 +1,4 @@
+local navic = require("nvim-navic")
 local opts = { noremap = true, silent = true }
 
 local M = {}
@@ -25,6 +26,10 @@ M.on_attach = function(client, bufnr)
         autocmd! CursorMoved <buffer> lua vim.lsp.buf.clear_references()
       augroup end
     ]])
+	end
+
+	if client.server_capabilities.documentSymbolProvider then
+		navic.attach(client, bufnr)
 	end
 
 	require("fidget").setup({

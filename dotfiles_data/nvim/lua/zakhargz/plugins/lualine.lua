@@ -1,81 +1,63 @@
-local setup, lualine = pcall(require, "lualine")
-if not setup then
+local lualine_status, lualine = pcall(require, "lualine")
+if not lualine_status then
 	return
 end
 
-lualine.setup({
+local navic = require("nvim-navic")
+local function gps_content()
+	if navic.is_available() then
+		return navic.get_location()
+	else
+		return ""
+	end
+end
+
+local conditions = {
+	buffer_not_empty = function()
+		return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
+	end,
+	hide_in_width = function()
+		return vim.fn.winwidth(0) > 80
+	end,
+	check_git_workspace = function()
+		local filepath = vim.fn.expand("%:p:h")
+		local gitdir = vim.fn.finddir(".git", filepath .. ";")
+		return gitdir and #gitdir > 0 and #gitdir < #filepath
+	end,
+}
+
+local colors = {
+	bg = "#202328",
+	fg = "#bbc2cf",
+	yellow = "#ECBE7B",
+	cyan = "#008080",
+	darkblue = "#081633",
+	green = "#98be65",
+	orange = "#FF8800",
+	violet = "#a9a1e1",
+	magenta = "#c678dd",
+	blue = "#1793d1",
+	red = "#ec5f67",
+}
+
+local conf = {
 	options = {
 		icons_enabled = true,
 		theme = "auto",
-		component_separators = { left = "", right = "" },
-		section_separators = { left = "", right = "" },
+		component_separators = "|",
 		disabled_filetypes = {},
+		ignore_focus = {},
 		always_divide_middle = true,
 		globalstatus = false,
+		refresh = { statusline = 1000 },
 	},
 	sections = {
-		lualine_a = { "mode", "branch" },
-		lualine_b = {
-			{
-				"filename",
-				file_status = true,
-				path = 1,
-				short_target = 40,
-				symbols = {
-					modified = " * ",
-					readonly = "  ",
-					unnamed = "[No Name]",
-				},
-			},
-		},
-		lualine_c = {
-			"CurrentFunction",
-			{
-				"diff",
-				colored = true,
-				diff_color = {
-					added = "DiffAdd",
-					modified = "DiffChanged",
-					removed = "DiffDelete",
-				},
-				symbols = { added = "+", modified = "*", removed = "-" },
-				source = nil,
-			},
-			{
-				"lsp_progress",
-				-- With spinner
-				separators = {
-					component = " ",
-					progress = " | ",
-					percentage = { pre = "", post = "%% " },
-					title = { pre = "", post = ": " },
-					lsp_client_name = { pre = "[", post = "]" },
-					spinner = { pre = "", post = "" },
-					message = { commenced = "In Progress", completed = "Completed", pre = "(", post = ")" },
-				},
-				display_components = { "lsp_client_name", "spinner", { "title", "percentage", "message" } },
-				timer = { progress_enddelay = 500, spinner = 1000, lsp_client_name_enddelay = 1000 },
-			},
-		},
-		lualine_x = {
-			{
-				"diagnostics",
-				sources = { "nvim_diagnostic", "nvim_lsp", "vim_lsp" },
-				selections = { "error", "warn", "info", "hint" },
-				diagnostics_color = {
-					error = "DiagnosticError",
-					warn = "DiagnosticWarn",
-					info = "DiagnosticInfo",
-					hint = "DiagnosticHint",
-				},
-				symbols = { error = " ⊗ ", warn = "⚠ ", info = "🛈 ", hint = " " },
-				colored = true,
-				update_in_insert = false,
-				always_visible = false,
-			},
-		},
-		lualine_y = { "location" },
-		lualine_z = { "encoding", "filetype" },
+		lualine_a = { "mode" },
+		lualine_b = { "branch", "diff", "diagnostics" },
+		lualine_c = { "filename", "lsp_progress" },
+		lualine_x = { "filetype" },
+		lualine_y = {},
+		lualine_z = { "progress" },
 	},
 	inactive_sections = {
 		lualine_a = {},
@@ -85,4 +67,38 @@ lualine.setup({
 		lualine_y = {},
 		lualine_z = {},
 	},
+	extensions = {},
+}
+
+local function ins_left(component)
+	table.insert(conf.sections.lualine_c, component)
+end
+
+local function ins_right(component)
+	table.insert(conf.sections.lualine_x, component)
+end
+
+ins_left({ gps_content, cond = navic.is_available })
+ins_right({
+	function()
+		local msg = "No Lsp"
+		local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
+		local clients = vim.lsp.get_active_clients()
+		if next(clients) == nil then
+			return msg
+		end
+		msg = ""
+		for _, client in ipairs(clients) do
+			local filetypes = client.config.filetypes
+			if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+				msg = msg .. " " .. client.name
+			end
+		end
+		msg = string.gsub(msg, "^%s*(.-)%s*$", "%1")
+		return msg
+	end,
+	icon = " LSP:",
+	color = { fg = colors.red },
 })
+
+lualine.setup(conf)

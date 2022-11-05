@@ -3,11 +3,6 @@ if not lspconfig_status then
 	return
 end
 
-local typescript_setup, typescript = pcall(require, "typescript")
-if not typescript_setup then
-	return
-end
-
 local on_attach_status, on_attach = pcall(require, "zakhargz.plugins.lsp.on_attach")
 if not on_attach_status then
 	vim.notify("require('plugins.lsp.on_attach') failed")
@@ -26,11 +21,11 @@ vim.diagnostic.config({
 	},
 })
 
-typescript.setup({
-	server = {
-		capabilities = capabilities,
-		on_attach = on_attach.on_attach,
-	},
+lspconfig["tsserver"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach.on_attach,
+	filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+	cmd = { "typescript-language-server", "--stdio" },
 })
 
 lspconfig["sumneko_lua"].setup({

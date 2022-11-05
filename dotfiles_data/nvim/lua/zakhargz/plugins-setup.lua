@@ -20,9 +20,9 @@ return require("packer").startup(function(use)
 	use({ "bluz71/vim-nightfly-guicolors" })
 	use({ "NTBBloodbath/doom-one.nvim" })
 	use({ "kyazdani42/nvim-web-devicons" })
-	use({ "nvim-lualine/lualine.nvim" })
 	use({ "j-hui/fidget.nvim" })
 	use({ "akinsho/bufferline.nvim" })
+	use({ "nvim-lualine/lualine.nvim" })
 
 	-- Utils
 	use({ "numToStr/Comment.nvim" })
@@ -58,6 +58,7 @@ return require("packer").startup(function(use)
 	use({ "glepnir/lspsaga.nvim", branch = "main" })
 	use({ "jose-elias-alvarez/typescript.nvim" })
 	use({ "onsails/lspkind.nvim" })
+	use({ "SmiteshP/nvim-navic" })
 
 	-- Linting & Formatting
 	use({ "jose-elias-alvarez/null-ls.nvim" })
