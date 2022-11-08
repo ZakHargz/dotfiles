@@ -22,7 +22,9 @@ return require("packer").startup(function(use)
 	use({ "kyazdani42/nvim-web-devicons" })
 	use({ "j-hui/fidget.nvim" })
 	use({ "akinsho/bufferline.nvim" })
+	use({ "romgrk/barbar.nvim" })
 	use({ "nvim-lualine/lualine.nvim" })
+	use({ "echasnovski/mini.nvim" })
 
 	-- Utils
 	use({ "numToStr/Comment.nvim" })
@@ -59,6 +61,7 @@ return require("packer").startup(function(use)
 	use({ "jose-elias-alvarez/typescript.nvim" })
 	use({ "onsails/lspkind.nvim" })
 	use({ "SmiteshP/nvim-navic" })
+	use({ "hashivim/vim-terraform" })
 
 	-- Linting & Formatting
 	use({ "jose-elias-alvarez/null-ls.nvim" })

@@ -84,6 +84,11 @@ _G.packer_plugins = {
     path = "/Users/zak_hargreaves/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  ["barbar.nvim"] = {
+    loaded = true,
+    path = "/Users/zak_hargreaves/.local/share/nvim/site/pack/packer/start/barbar.nvim",
+    url = "https://github.com/romgrk/barbar.nvim"
+  },
   ["bufferline.nvim"] = {
     loaded = true,
     path = "/Users/zak_hargreaves/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
@@ -163,6 +168,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/zak_hargreaves/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
+  },
+  ["mini.nvim"] = {
+    loaded = true,
+    path = "/Users/zak_hargreaves/.local/share/nvim/site/pack/packer/start/mini.nvim",
+    url = "https://github.com/echasnovski/mini.nvim"
   },
   ["neo-tree.nvim"] = {
     commands = { "Neotree" },
@@ -263,6 +273,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/zak_hargreaves/.local/share/nvim/site/pack/packer/start/vim-nightfly-guicolors",
     url = "https://github.com/bluz71/vim-nightfly-guicolors"
+  },
+  ["vim-terraform"] = {
+    loaded = true,
+    path = "/Users/zak_hargreaves/.local/share/nvim/site/pack/packer/start/vim-terraform",
+    url = "https://github.com/hashivim/vim-terraform"
   }
 }
 

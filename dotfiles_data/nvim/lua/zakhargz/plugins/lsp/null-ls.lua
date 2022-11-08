@@ -12,6 +12,7 @@ null_ls.setup({
 		formatting.prettier,
 		formatting.stylua,
 		formatting.gofumpt,
+		formatting.terraform_fmt,
 		diagnostics.eslint_d,
 	},
 	on_attach = function(current_client, bufnr)

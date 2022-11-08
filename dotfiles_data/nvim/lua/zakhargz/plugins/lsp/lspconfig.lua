@@ -15,9 +15,15 @@ vim.diagnostic.config({
 	severity_sort = true,
 	virtual_text = true,
 	underline = true,
-	signs = { priority = 10 },
+	signs = true,
+	update_in_insert = false,
 	float = {
-		source = "if_many",
+		focusable = false,
+		style = "minimal",
+		border = "rounded",
+		source = "always",
+		header = "",
+		prefix = "",
 	},
 })
 
@@ -82,21 +88,21 @@ lspconfig["tailwindcss"].setup({
 	on_attach = on_attach.on_attach,
 })
 
-function OrganiseImports(timeoutms)
-	local clients = vim.lsp.buf_get_clients()
-	for _, client in pairs(clients) do
-		local params = vim.lsp.util.make_range_params(nil, client.offset_encoding)
-		params.context = { only = { "source.organiseImports" } }
-
-		local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, timeoutms)
-		for _, res in pairs(result or {}) do
-			for _, r in pairs(res.result or {}) do
-				if r.edit then
-					vim.lsp.util.apply_workout_edit(r.edit, client.offset_encoding)
-				else
-					vim.lsp.buf.execute_command()
-				end
-			end
-		end
-	end
-end
+-- function OrganiseImports(timeoutms)
+-- 	local clients = vim.lsp.buf_get_clients()
+-- 	for _, client in pairs(clients) do
+-- 		local params = vim.lsp.util.make_range_params(nil, client.offset_encoding)
+-- 		params.context = { only = { "source.organiseImports" } }
+--
+-- 		local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, timeoutms)
+-- 		for _, res in pairs(result or {}) do
+-- 			for _, r in pairs(res.result or {}) do
+-- 				if r.edit then
+-- 					vim.lsp.util.apply_workout_edit(r.edit, client.offset_encoding)
+-- 				else
+-- 					vim.lsp.buf.execute_command()
+-- 				end
+-- 			end
+-- 		end
+-- 	end
+-- end

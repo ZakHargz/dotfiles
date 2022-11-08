@@ -9,19 +9,29 @@ vim.cmd([[
   augroup end
 ]])
 
-autocmd("BufWritePre", { pattern = "*", command = ":%s/\\s\\+$//e" }) -- Remove whitepsace on save
-autocmd("BufEnter", { pattern = "*", command = "set fo-=c fo-=r fo-=o" }) -- Don't autocomment new lines
+-- Remove whitespace on save
+autocmd("BufWritePre", { pattern = "*", command = ":%s/\\s\\+$//e" })
+
+-- Don't autocomment new lines
+autocmd("BufEnter", { pattern = "*", command = "set fo-=c fo-=r fo-=o" })
+
+-- Autoclose NVIM if last widow open
 autocmd("BufEnter", {
 	nested = true,
 	callback = function()
-		if #vim.api.nvim_list_wins() == 2 and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil then
+		if #vim.api.nvim_list_wins() == 2 and vim.api.nvim_buf_get_name(0):match("NeoTree") ~= nil then
 			vim.cmd("quit")
 		end
 	end,
-}) -- Autoclose NVIM if last window open
+})
 
+-- Set dockerfile as dockerfile
 autocmd({ "BufNewFile", "BufRead" }, {
 	pattern = "*.dockerfile",
 	command = "set ft=dockerfile",
 	group = vim.api.nvim_create_augroup("Dockerfile", { clear = true }),
-}) -- Set dockerfile as dockerfile
+})
+
+-- Disable diagnostics in node_modules (0 is current buffer only)
+vim.api.nvim_create_autocmd("BufRead", { pattern = "*/node_modules/*", command = "lua vim.diagnostic.disable(0)" })
+vim.api.nvim_create_autocmd("BufNewFile", { pattern = "*/node_modules/*", command = "lua vim.diagnostic.disable(0)" })

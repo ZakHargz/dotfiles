@@ -37,18 +37,6 @@ M.on_attach = function(client, bufnr)
 			spinner = "arc",
 		},
 	})
-
-	if client.name ~= "null-ls" and client.name ~= "sumneko_lua" then
-		vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-			pattern = "<buffer>",
-			callback = function()
-				if vim.lsp.buf.server_ready() then
-					OrganiseImports(150)
-				end
-			end,
-			group = vim.api.nvim_create_augroup("LSPOrganizeImports", { clear = true }),
-		})
-	end
 end
 
 return M

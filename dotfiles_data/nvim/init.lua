@@ -23,8 +23,9 @@ require("zakhargz.plugins.gitsigns")
 require("zakhargz.plugins.bufferline")
 require("zakhargz.plugins.neo-term")
 require("zakhargz.plugins.trouble")
-require("zakhargz.plugins.lualine")
+require("zakhargz.plugins.lualine.lualine")
 require("zakhargz.plugins.nvim-navic")
+require("zakhargz.plugins.mini")
 
 -- LSP Plugins
 require("zakhargz.plugins.lsp.mason")

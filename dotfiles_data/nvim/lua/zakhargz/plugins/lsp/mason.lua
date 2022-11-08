@@ -51,5 +51,6 @@ mason_null_ls.setup({
 		"shellcheck",
 		"yamlfmt",
 		"gofumpt",
+		"tflint",
 	},
 })

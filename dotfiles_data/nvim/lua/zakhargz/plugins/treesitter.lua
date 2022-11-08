@@ -21,6 +21,7 @@ treesitter.setup({
 		"dockerfile",
 		"gitignore",
 		"fish",
+		"hcl",
 	},
 	auto_install = true,
 	autopairs = { enable = true },
