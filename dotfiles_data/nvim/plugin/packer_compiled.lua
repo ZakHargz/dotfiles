@@ -119,6 +119,11 @@ _G.packer_plugins = {
     path = "/Users/zak_hargreaves/.local/share/nvim/site/pack/packer/start/doom-one.nvim",
     url = "https://github.com/NTBBloodbath/doom-one.nvim"
   },
+  ["dressing.nvim"] = {
+    loaded = true,
+    path = "/Users/zak_hargreaves/.local/share/nvim/site/pack/packer/start/dressing.nvim",
+    url = "https://github.com/stevearc/dressing.nvim"
+  },
   ["fidget.nvim"] = {
     loaded = true,
     path = "/Users/zak_hargreaves/.local/share/nvim/site/pack/packer/start/fidget.nvim",
@@ -138,6 +143,14 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/zak_hargreaves/.local/share/nvim/site/pack/packer/start/impatient.nvim",
     url = "https://github.com/lewis6991/impatient.nvim"
+  },
+  ["legendary.nvim"] = {
+    keys = { { "", "<C-p>" } },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/Users/zak_hargreaves/.local/share/nvim/site/pack/packer/opt/legendary.nvim",
+    url = "https://github.com/mrjones2014/legendary.nvim"
   },
   ["lspkind.nvim"] = {
     loaded = true,
@@ -223,6 +236,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/zak_hargreaves/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
+  },
+  ["nvim-treesitter-textobjects"] = {
+    loaded = true,
+    path = "/Users/zak_hargreaves/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
   },
   ["nvim-ts-autotag"] = {
     loaded = true,
@@ -316,6 +334,11 @@ end
 time([[Defining lazy-load commands]], true)
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Neotree lua require("packer.load")({'neo-tree.nvim'}, { cmd = "Neotree", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 time([[Defining lazy-load commands]], false)
+
+-- Keymap lazy-loads
+time([[Defining lazy-load keymaps]], true)
+vim.cmd [[noremap <silent> <C-p> <cmd>lua require("packer.load")({'legendary.nvim'}, { keys = "<lt>C-p>", prefix = "" }, _G.packer_plugins)<cr>]]
+time([[Defining lazy-load keymaps]], false)
 
 
 _G._packer.inside_compile = false

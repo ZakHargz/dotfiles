@@ -39,3 +39,4 @@ if command -s gpg-agent 2>&1 > /dev/null
 	# Use curses based Pinentry
 	set -x GPG_TTY (tty)
 end
+rvm default

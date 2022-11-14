@@ -10,6 +10,8 @@ end
 
 -- Enable autocomplete
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 
 vim.diagnostic.config({
 	severity_sort = true,
@@ -26,6 +28,12 @@ vim.diagnostic.config({
 		prefix = "",
 	},
 })
+
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+	local hl = "DiagnosticSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
 
 lspconfig["tsserver"].setup({
 	capabilities = capabilities,
@@ -76,11 +84,23 @@ lspconfig["terraformls"].setup({
 	capabilities = capabilities,
 	filetypes = { "terraform", "hcl", "tf" },
 	cmd = { "terraform-lsp" },
+	flags = {
+		debounce_text_changes = 150,
+	},
 })
 
 lspconfig["jsonls"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach.on_attach,
+	settings = {
+		json = {
+			schemas = {
+				{ fileMatch = { "jsconfig.json" }, url = "https://json.schemastore.org/jsconfig" },
+				{ fileMatch = { "tsconfig.json" }, url = "https://json.schemastore.org/tsconfig" },
+				{ fileMatch = { "package.json" }, url = "https://json.schemastore.org/package" },
+			},
+		},
+	},
 })
 
 lspconfig["tailwindcss"].setup({
@@ -88,21 +108,17 @@ lspconfig["tailwindcss"].setup({
 	on_attach = on_attach.on_attach,
 })
 
--- function OrganiseImports(timeoutms)
--- 	local clients = vim.lsp.buf_get_clients()
--- 	for _, client in pairs(clients) do
--- 		local params = vim.lsp.util.make_range_params(nil, client.offset_encoding)
--- 		params.context = { only = { "source.organiseImports" } }
---
--- 		local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, timeoutms)
--- 		for _, res in pairs(result or {}) do
--- 			for _, r in pairs(res.result or {}) do
--- 				if r.edit then
--- 					vim.lsp.util.apply_workout_edit(r.edit, client.offset_encoding)
--- 				else
--- 					vim.lsp.buf.execute_command()
--- 				end
--- 			end
--- 		end
--- 	end
--- end
+-- lspconfig["yamlls"].setup({
+-- 	on_attach = on_attach,
+-- 	capabilities = capabilities,
+-- 	settings = {
+-- 		yaml = {
+-- 			schemas = {
+-- 				["http://json.schemastore.org/gitlab-ci"] = ".gitlab-ci.yml",
+-- 				["http://json.schemastore.org/composer"] = "composer.yaml",
+-- 				["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "docker-compose*.yml",
+-- 				["https://raw.githubusercontent.com/kamilkisiela/graphql-config/v3.0.3/config-schema.json"] = ".graphqlrc*",
+-- 			},
+-- 		},
+-- 	},
+-- })

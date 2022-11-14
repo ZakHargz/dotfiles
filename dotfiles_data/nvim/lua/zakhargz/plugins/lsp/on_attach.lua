@@ -4,6 +4,8 @@ local opts = { noremap = true, silent = true }
 local M = {}
 
 M.on_attach = function(client, bufnr)
+	local capabilities = client.server_capabilities
+
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", ":lua vim.lsp.buf.definition()<CR>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "gh", ":lua vim.lsp.buf.hover()<CR>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", ":lua vim.lsp.buf.rename()<CR>", opts)
@@ -12,9 +14,9 @@ M.on_attach = function(client, bufnr)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "ca", ":lua vim.lsp.buf.code_action()<CR>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>de", ":lua vim.diagnostic.open_float()<CR>", opts)
 
-	client.server_capabilities.document_formatting = false
+	capabilities.document_formatting = false
 
-	if client.server_capabilities.document_highlighting then
+	if capabilities.document_highlighting then
 		vim.cmd([[
       highlight! link LspReferenceText Visual
       highlight! link LspReferenceRead Visual
@@ -28,7 +30,7 @@ M.on_attach = function(client, bufnr)
     ]])
 	end
 
-	if client.server_capabilities.documentSymbolProvider then
+	if capabilities.documentSymbolProvider then
 		navic.attach(client, bufnr)
 	end
 

@@ -5,6 +5,7 @@ end
 
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
+local code_action = null_ls.builtins.code_actions
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 null_ls.setup({
@@ -14,6 +15,8 @@ null_ls.setup({
 		formatting.gofumpt,
 		formatting.terraform_fmt,
 		diagnostics.eslint_d,
+    code_action.gitsigns,
+    code_action.eslint_d
 	},
 	on_attach = function(current_client, bufnr)
 		if current_client.supports_method("textDocument/formatting") then

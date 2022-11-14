@@ -26,6 +26,7 @@ require("zakhargz.plugins.trouble")
 require("zakhargz.plugins.lualine.lualine")
 require("zakhargz.plugins.nvim-navic")
 require("zakhargz.plugins.mini")
+require("zakhargz.plugins.legendary")
 
 -- LSP Plugins
 require("zakhargz.plugins.lsp.mason")

@@ -36,6 +36,7 @@ return require("packer").startup(function(use)
 	use({ "lewis6991/gitsigns.nvim" })
 	use({ "folke/trouble.nvim" })
 	use({ "kassio/neoterm" })
+	use({ "mrjones2014/legendary.nvim", keys = { [[<C-p>]] }, requires = { "stevearc/dressing.nvim" } })
 	use({
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v2.x",
@@ -74,6 +75,7 @@ return require("packer").startup(function(use)
 			require("nvim-treesitter.install").update({ with_sync = true })
 		end,
 	})
+	use({ "nvim-treesitter/nvim-treesitter-textobjects" })
 
 	if packer_bootstrap then
 		require("packer").sync()
