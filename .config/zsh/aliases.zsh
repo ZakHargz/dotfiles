@@ -1,0 +1,6 @@
+alias v="nvim"
+alias lg="lazygit"
+alias reload="source ~/.zshrc"
+alias projects="~/Projects"
+alias flutter="~/Flutter"
+alias t="eza --tree --level=2 --icons --git --git-ignore"
