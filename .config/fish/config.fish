@@ -17,3 +17,4 @@ fish_add_path /Users/hargrzak/.opencode/bin
 status is-interactive; and source (pyenv init --path | psub)
 
 source ~/.config/fish/functions/devops.fish
+source ~/.config/fish/functions/tmux.fish
