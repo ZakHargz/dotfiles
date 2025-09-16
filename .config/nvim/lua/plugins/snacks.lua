@@ -1,3 +1,10 @@
+-- ================================================================================================
+-- TITLE: snacks
+-- ABOUT: A collection of QoL plugins for Neovim
+-- LINKS:
+--    > github : https://github.com/folke/snacks.nvim
+-- ================================================================================================
+
 local map = vim.keymap.set
 
 vim.pack.add {
