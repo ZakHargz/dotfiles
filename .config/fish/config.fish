@@ -18,3 +18,10 @@ status is-interactive; and source (pyenv init --path | psub)
 
 source ~/.config/fish/functions/devops.fish
 source ~/.config/fish/functions/tmux.fish
+
+set -Ux FZF_DEFAULT_OPTS "
+  --height=40%
+  --layout=reverse
+  --border=rounded
+  --margin=10%,25%
+"

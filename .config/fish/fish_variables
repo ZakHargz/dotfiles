@@ -19,6 +19,7 @@ SETUVAR --export EXA_LO_OPTIONS:\x2d\x2doneline
 SETUVAR --export EXA_LT_OPTIONS:\x2d\x2dtree\x1e\x2d\x2dlevel
 SETUVAR --export EXA_L_OPTIONS:\x1d
 SETUVAR --export EXA_STANDARD_OPTIONS:\x2d\x2dgroup\x1e\x2d\x2dheader\x1e\x2d\x2dgroup\x2ddirectories\x2dfirst
+SETUVAR --export FZF_DEFAULT_OPTS:\x0a\x20\x20\x2d\x2dheight\x3d40\x25\x0a\x20\x20\x2d\x2dlayout\x3dreverse\x0a\x20\x20\x2d\x2dborder\x3drounded\x0a\x20\x20\x2d\x2dmargin\x3d10\x25\x2c25\x25\x0a
 SETUVAR __fish_initialized:3800
 SETUVAR _fisher_arbourd_2F_prompt_files:\x7e/\x2econfig/fish/functions/fish_prompt\x2efish\x1e\x7e/\x2econfig/fish/functions/fish_right_prompt\x2efish
 SETUVAR _fisher_edc_2F_bass_files:\x7e/\x2econfig/fish/functions/__bass\x2epy\x1e\x7e/\x2econfig/fish/functions/bass\x2efish
